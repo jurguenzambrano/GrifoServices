@@ -239,5 +239,5 @@ ModelManifest.xml
 .paket/paket.exe
 
 # FAKE - F# Make
-.fake/
-PromocionesTest
+#.fake/
+#PromocionesTest
