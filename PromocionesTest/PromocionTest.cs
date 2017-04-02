@@ -16,7 +16,7 @@ namespace PromocionesTest
     [TestClass]
     public class PromocionTest
     {
-        /*
+        
         [TestMethod]
         public void insertarPromocion()
         {
@@ -29,10 +29,10 @@ namespace PromocionesTest
             JavaScriptSerializer js;
 
             // Prueba de creación de usuario 
-            usuario = "{\"Id\":\"0\",\"Codigo\":\"PROMOCION01\",\"Nombre\":\"PROMOCION DE VERANO 2017\",\"Descripcion\":\"Promoción valida del 28 de diciembre del 2016 al 30 de Abril del 2017\",\"RutaImagen\":\"rutaimagen.jpg\",\"Estado\":\"1\"}";
+            usuario = "{\"Id\":\"0\",\"Code\":\"PROMOCION01\",\"Name\":\"PROMOCION DE VERANO 2017\",\"Description\":\"Promoción valida del 28 de diciembre del 2016 al 30 de Abril del 2017\",\"PathImage\":\"rutaimagen.jpg\",\"State\":\"1\"}";
             data = Encoding.UTF8.GetBytes(usuario);
 
-            req = (HttpWebRequest)WebRequest.Create("http://localhost:41084/PromocionesServices.svc/promociones");
+            req = (HttpWebRequest)WebRequest.Create("http://localhost:41084/PromotionsServices.svc/promotions");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
@@ -44,8 +44,8 @@ namespace PromocionesTest
                 reader = new StreamReader(res.GetResponseStream());
                 usuarioJson = reader.ReadToEnd();
                 js = new JavaScriptSerializer();
-                PromocionBE promocion = js.Deserialize<PromocionBE>(usuarioJson);
-                Assert.AreEqual("PROMOCION01", promocion.Codigo);
+                PromotionBE promocion = js.Deserialize<PromotionBE>(usuarioJson);
+                Assert.AreEqual("PROMOCION01", promocion.Code);
             }
             catch (WebException e)
             {
@@ -58,6 +58,6 @@ namespace PromocionesTest
                 Assert.AreEqual("Código de Producto ya registrado.", mensaje);
             }
         }
-        */
+        
     }
 }

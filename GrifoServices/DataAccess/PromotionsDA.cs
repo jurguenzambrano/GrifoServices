@@ -14,7 +14,7 @@ namespace GrifoServices.DataAccess
         public PromotionBE Crear(PromotionBE promocionACrear)
         {
             PromotionBE productoCreado = null;
-            string sql = "INSERT INTO PROMOCIONES (CODIGO, NOMBRE, DESCRIPCION, RUTAIMAGEN, ESTADO) VALUES (@Codigo, @Nombre, @Descripcion, @RutaImagen, @Estado)";
+            string sql = "INSERT INTO PROMOTIONS (CODE, NAME, DESCRIPTION, PATHIMAGE, STATE) VALUES (@Codigo, @Nombre, @Descripcion, @RutaImagen, @Estado)";
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 conexion.Open();
@@ -35,7 +35,7 @@ namespace GrifoServices.DataAccess
         public PromotionBE Obtener(string Codigo)
         {
             PromotionBE productoEncontrado = null;
-            string sql = "SELECT * FROM PROMOCIONES WHERE CODIGO = @Codigo";
+            string sql = "SELECT * FROM PROMOTIONS WHERE CODE = @Codigo";
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -49,11 +49,11 @@ namespace GrifoServices.DataAccess
                         {
                             productoEncontrado = new PromotionBE()
                             {
-                                Code = (string)resultado["Codigo"],
-                                Name = (string)resultado["Nombre"],
-                                Description = (string)resultado["Descripcion"],
-                                PathImage = (string)resultado["RutaImagen"],
-                                State = (int)resultado["Estado"],
+                                Code = (string)resultado["Code"],
+                                Name = (string)resultado["Name"],
+                                Description = (string)resultado["Description"],
+                                PathImage = (string)resultado["PathImage"],
+                                State = (int)resultado["State"],
                                 Id = (int)resultado["Id"]
                             };
 
@@ -67,7 +67,7 @@ namespace GrifoServices.DataAccess
         public PromotionBE Obtener(int Id)
         {
             PromotionBE productoEncontrado = null;
-            string sql = "SELECT * FROM PROMOCIONES WHERE ID = @Id";
+            string sql = "SELECT * FROM PROMOTIONS WHERE ID = @Id";
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -81,11 +81,11 @@ namespace GrifoServices.DataAccess
                         {
                             productoEncontrado = new PromotionBE()
                             {
-                                Code = (string)resultado["Codigo"],
-                                Name = (string)resultado["Nombre"],
-                                Description = (string)resultado["Descripcion"],
-                                PathImage = (string)resultado["RutaImagen"],
-                                State = (int)resultado["Estado"],
+                                Code = (string)resultado["Code"],
+                                Name = (string)resultado["Name"],
+                                Description = (string)resultado["Description"],
+                                PathImage = (string)resultado["PathImage"],
+                                State = (int)resultado["State"],
                                 Id = (int)resultado["Id"]
                             };
 
@@ -100,7 +100,7 @@ namespace GrifoServices.DataAccess
         {
             List<PromotionBE> promocionesEncontrados = new List<PromotionBE>();
             PromotionBE promocionEncontrado = null;
-            string sql = "SELECT * FROM PROMOCIONES WHERE ESTADO = 1";
+            string sql = "SELECT * FROM PROMOTIONS WHERE STATE = 1";
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 conexion.Open();
@@ -114,11 +114,11 @@ namespace GrifoServices.DataAccess
                             promocionEncontrado = new PromotionBE()
                             {
                                 Id = (int)resultado["Id"],
-                                Code = (string)resultado["Codigo"],
-                                Name = (string)resultado["Nombre"],
-                                Description = (string)resultado["Descripcion"],
-                                PathImage = (string)resultado["rutaImagen"],
-                                State = (int)resultado["Estado"]
+                                Code = (string)resultado["Code"],
+                                Name = (string)resultado["Name"],
+                                Description = (string)resultado["Description"],
+                                PathImage = (string)resultado["PathImage"],
+                                State = (int)resultado["State"]
                             };
                             promocionesEncontrados.Add(promocionEncontrado);
                         }
