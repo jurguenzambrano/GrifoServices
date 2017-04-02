@@ -7,19 +7,19 @@ using System.Web;
 namespace GrifoServices.BusinessEntity
 {
     [DataContract]
-    public class PromocionBE
+    public class PromotionBE
     {
         [DataMember]
         public long Id { get; set; }
         [DataMember]
-        public string Codigo { get; set; }
+        public string Code { get; set; }
         [DataMember]
-        public string Nombre { get; set; }
+        public string Name { get; set; }
         [DataMember]
-        public string Descripcion { get; set; }
+        public string Description { get; set; }
         [DataMember]
-        public string RutaImagen { get; set; }
+        public string PathImage { get; set; }
         [DataMember]
-        public int Estado { get; set; }
+        public int State { get; set; }
     }
 }

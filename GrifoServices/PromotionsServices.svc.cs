@@ -13,14 +13,14 @@ namespace GrifoServices
 {
     // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de clase "PromocionesServices" en el código, en svc y en el archivo de configuración a la vez.
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione PromocionesServices.svc o PromocionesServices.svc.cs en el Explorador de soluciones e inicie la depuración.
-    public class PromocionesServices : IPromocionesServices
+    public class PromocionesServices : IPromotionsServices
     {
-        private PromocionBE producto = new PromocionBE();
-        private PromocionesDA promociones = new PromocionesDA();
+        private PromotionBE producto = new PromotionBE();
+        private PromotionsDA promociones = new PromotionsDA();
 
-        public PromocionBE CrearPromociones(PromocionBE promocion)
+        public PromotionBE CrearPromociones(PromotionBE promocion)
         {
-            if (promociones.Obtener(promocion.Codigo) != null){
+            if (promociones.Obtener(promocion.Code) != null){
                 throw new WebFaultException<string>("Código de Producto ya registrado.", HttpStatusCode.Conflict);
             }
             producto = promociones.Crear(promocion);
@@ -33,12 +33,12 @@ namespace GrifoServices
             }
         }
 
-        public List<PromocionBE> ListarPromociones()
+        public List<PromotionBE> ListarPromociones()
         {
             return promociones.Listar();
         }
 
-        public PromocionBE ObtenerPromocion(string id)
+        public PromotionBE ObtenerPromocion(string id)
         {
             producto = promociones.Obtener(int.Parse(id));
             if (producto != null)
