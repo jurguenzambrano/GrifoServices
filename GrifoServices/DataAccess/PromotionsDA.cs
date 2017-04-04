@@ -9,7 +9,7 @@ namespace GrifoServices.DataAccess
 {
     public class PromotionsDA
     {
-        private string cadenaConexion = "Server=b1f92bbf-b111-4b5d-ac78-a74401748837.sqlserver.sequelizer.com;Database=dbb1f92bbfb1114b5dac78a74401748837;User ID = otqqdsefejjhblan; Password=ypEaPchU6ejzYVzD6Pe4MLFSsUMGqHXSLuW7Ee8EMZRdHTvv52uwvf3URUP3wGCv;";
+        private string cadenaConexion = "Server=ae9ca6de-d177-4ed1-9f2a-a74b00e16461.sqlserver.sequelizer.com;Database=dbae9ca6ded1774ed19f2aa74b00e16461;User ID=daqpvbwzmtktbvkg;Password=BgH6oxQtJGWMGfHxyq53ujmgYpDMNAyuNfT4dGuSsuarpovxmauV4E4s4Bg82cMi;";
 
         public PromotionBE Crear(PromotionBE promocionACrear)
         {
