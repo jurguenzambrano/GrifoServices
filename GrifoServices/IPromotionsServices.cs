@@ -14,15 +14,15 @@ namespace GrifoServices
     public interface IPromotionsServices
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "v1/promotions", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "promotions", ResponseFormat = WebMessageFormat.Json)]
         List<PromotionBE> ListarPromociones();
 
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "v1/promotions/{id}", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "promotions/{id}", ResponseFormat = WebMessageFormat.Json)]
         PromotionBE ObtenerPromocion(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "v1/promotions", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "POST", UriTemplate = "promotions", ResponseFormat = WebMessageFormat.Json)]
         PromotionBE CrearPromociones(PromotionBE Promocion);
     }
 }
