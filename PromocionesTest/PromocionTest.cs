@@ -10,13 +10,13 @@ using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
 using GrifoServices.BusinessEntity;
+using System.Diagnostics;
 
 namespace PromocionesTest
 {
     [TestClass]
     public class PromocionTest
-    {
-        
+    {/*
         [TestMethod]
         public void insertarPromocion()
         {
@@ -58,6 +58,52 @@ namespace PromocionesTest
                 Assert.AreEqual("Código de Producto ya registrado.", mensaje);
             }
         }
-        
+        */
+
+        [TestMethod]
+        public void obtenerPromociones()
+        {
+            HttpWebRequest req;
+            StreamReader reader;
+            string usuarioJson;
+            HttpWebResponse res;
+            JavaScriptSerializer js;
+
+            // Obtener Usuario
+            req = (HttpWebRequest)WebRequest.Create("http://localhost:41084/PromotionsServices.svc/promotions");
+            req.Method = "GET";
+            req.Headers.Add("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0OTE4ODMxODUsImp0aSI6InFpQjBEaUpqdVV0RDlNRnRaWG9zVkc0VlVMYzJsQzUwdGtjd1Z4dWRDU0E9IiwiaWQiOjN9.NnGScmqxI4SJBycXA_zCfE9-uHVwyR1RfjF0-0hBCrY");
+            try
+            {
+                res = (HttpWebResponse)req.GetResponse();
+                reader = new StreamReader(res.GetResponseStream());
+                usuarioJson = reader.ReadToEnd();
+                js = new JavaScriptSerializer();
+                //Usuario usuarioObtenido = js.Deserialize<Usuario>(usuarioJson);
+                //Assert.AreEqual(dni, usuarioObtenido.Dni);
+                Assert.AreEqual("DE LOS PALOTES", "DE LOS PALOTES");
+                System.Diagnostics.Debug.Write("-------------------------------------------------------");
+                Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+                Trace.WriteLine("Hello World2");
+                Debug.WriteLine("Time {0}", DateTime.Now);
+            }
+            catch (WebException e)
+            {
+                HttpStatusCode code = ((HttpWebResponse)e.Response).StatusCode;
+                string message = ((HttpWebResponse)e.Response).StatusDescription;
+                reader = new StreamReader(e.Response.GetResponseStream());
+                string error = reader.ReadToEnd();
+                js = new JavaScriptSerializer();
+                string mensaje = js.Deserialize<string>(error);
+                Assert.AreEqual("Alumno no existe", mensaje);
+                Console.WriteLine("Hello world");
+                Console.WriteLine("Press any key to exit.");
+                System.Diagnostics.Debug.Write("-------------------------------------------------------");
+                Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+                Trace.WriteLine("Hello World");
+                Debug.WriteLine("Time {0}", DateTime.Now);
+            }
+        }
+
     }
 }
