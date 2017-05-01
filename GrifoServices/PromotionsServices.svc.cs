@@ -41,12 +41,11 @@ namespace GrifoServices
             WebHeaderCollection headers = request.Headers;
             HttpWebRequest req;
             StreamReader reader;
-            string usuarioJson;
             HttpWebResponse res;
             JavaScriptSerializer js;
 
             // Obtener Usuario
-            req = (HttpWebRequest)WebRequest.Create("http://api.fuel.maraquya.com/users/3");
+            req = (HttpWebRequest)WebRequest.Create("http://api.fuel.maraquya.com/users/" + headers["id"]);
             req.Method = "GET";
             req.Headers.Add("token", headers["token"]);
             try
@@ -58,10 +57,6 @@ namespace GrifoServices
                 {
                     throw new WebFaultException<string>(message, code);
                 }
-                reader = new StreamReader(res.GetResponseStream());
-                usuarioJson = reader.ReadToEnd();
-                js = new JavaScriptSerializer();
-
                 return promociones.Listar();
             }
             catch (WebException e)
@@ -71,11 +66,9 @@ namespace GrifoServices
                 reader = new StreamReader(e.Response.GetResponseStream());
                 string error = reader.ReadToEnd();
                 js = new JavaScriptSerializer();
-                string mensaje = js.Deserialize<string>(error);
-                throw new WebFaultException<string>("Error al validar token.", HttpStatusCode.InternalServerError);
+                MessageResponse mensajeResponse = js.Deserialize<MessageResponse>(error);
+                throw new WebFaultException<string>(mensajeResponse.message, HttpStatusCode.InternalServerError);
             }
-
-            
         }
 
         public PromotionBE ObtenerPromocion(string id)
